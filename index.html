@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of Vela & Yuski</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* RESET & GENERAL STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #4a4a4a;
+      background-color: #fdfbf7;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+    .cursive {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    /* COVER SECTION */
+    #cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('Gemini_Generated_Image_70qcia70qcia70qc.jpg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 9999;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+      padding: 20px;
+    }
+    #cover.hide {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cover-content {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      max-width: 450px;
+      width: 90%;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .cover-title {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #7a6855;
+    }
+    .cover-couple {
+      font-size: 2.8rem;
+      color: #8c6d46;
+      margin-bottom: 20px;
+    }
+    .guest-box {
+      margin: 20px 0;
+      padding: 15px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px stroke #e2d7c5;
+    }
+    .guest-box p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .guest-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-top: 5px;
+    }
+    .btn-open {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #8c6d46;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(140, 109, 70, 0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-open:hover {
+      background: #725735;
+      transform: translateY(-2px);
+    }
+
+    /* MAIN CONTENT */
+    #main-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    #main-content.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* HERO VIDEO SECTION */
+    .hero-video-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .hero-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      text-align: center;
+      animation: bounce 2s infinite;
+      z-index: 10;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -10px); }
+      60% { transform: translate(-50%, -5px); }
+    }
+
+    /* SECTION BACKGROUND COMMON */
+    .bg-section {
+      background: url('download (21).jpg') no-repeat center center/cover fixed;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      color: #8c6d46;
+      margin-bottom: 20px;
+    }
+
+    /* BRIDE & GROOM SECTION */
+    .couple-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 350px;
+    }
+    /* Frame Foto dengan Bingkai Bunga */
+    .photo-frame {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(135deg, #d4af37, #f3e5ab);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    /* Elemen Hiasan Bunga Bingkai */
+    .photo-frame::before {
+      content: '🌸';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      font-size: 2rem;
+    }
+    .photo-frame::after {
+      content: '🌺';
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      font-size: 2rem;
+    }
+    .profile-name {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .parents {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #e1306c;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* LOVE STORY SECTION */
+    .story-item {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .story-img {
+      width: 100%;
+      max-width: 450px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+    .story-title {
+      font-size: 1.5rem;
+      color: #8c6d46;
+      margin-bottom: 10px;
+    }
+    .story-desc {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      padding: 0 10px;
+    }
+
+    /* WEDDING GIFT SECTION */
+    .bank-card {
+      background: #fdfbf7;
+      border: 1px solid #e2d7c5;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 400px;
+      text-align: center;
+    }
+    .bank-name {
+      font-weight: bold;
+      color: #00529c; /* BRI Color */
+      font-size: 1.1rem;
+    }
+    .rekening-number {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin: 8px 0;
+      letter-spacing: 1px;
+    }
+    .rekening-owner {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* RSVP & WISHES FORM SECTION */
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: #4a4a4a;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    textarea.form-control {
+      resize: vertical;
+      height: 100px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background: #8c6d46;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-submit:hover {
+      background: #725735;
+    }
+
+    /* WISHES LIST DISPLAY */
+    .wishes-container {
+      margin-top: 30px;
+      max-height: 350px;
+      overflow-y: auto;
+      text-align: left;
+      padding-right: 10px;
+    }
+    .wish-card {
+      background: #fdfbf7;
+      border-left: 4px solid #8c6d46;
+      padding: 12px 15px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    .wish-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .wish-name {
+      font-weight: 600;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    .wish-status {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #e2d7c5;
+      color: #4a4a4a;
+    }
+    .wish-text {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* MUSIC CONTROLLER */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      background: #8c6d46;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="Albi Nadak - Ai Khodijah X Adzando Davema (Cover) (1).mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="cover">
+    <div class="cover-content">
+      <p class="cover-title">The Wedding Of</p>
+      <h1 class="cover-couple cursive">Novela & Yuski</h1>
+      
+      <div class="guest-box">
+        <p>Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+        <div class="guest-name" id="guest-name-display">Nama Tamu</div>
+      </div>
+
+      <button class="btn-open" onclick="openInvitation()">
+        <i class="fa-solid fa-envelope-open"></i> Buka Undangan
+      </button>
+    </div>
+  </div>
+
+  <div id="main-content">
+    
+    <div class="hero-video-container">
+      <video id="hero-video" autoplay loop muted playsinline>
+        <source src="PixVerse_V6_Image_Text_540P_buatkan_gambar_ini.mp4" type="video/mp4">
+      </video>
+      <div class="scroll-hint">
+        <p style="font-size: 0.8rem; letter-spacing: 1px;">GULIR KE BAWAH</p>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <div class="bg-section">
+
+      <div class="container">
+        <h2 class="section-title cursive">Mempelai</h2>
+        <p style="font-size: 0.9rem; margin-bottom: 30px; color: #666;">
+          Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.
+        </p>
+
+        <div class="couple-container">
+          
+          <div class="profile-card">
+            <div class="photo-frame">
+              <img src="fa66d317-7acb-4eda-a1ef-c79aab6971e1(1)(2).jpg" alt="Difa Jeni Novela">
+            </div>
+            <h3 class="profile-name cursive">Difa Jeni Novela, S.Pd., Gr.</h3>
+            <p class="parents">
+              Putri dari Bapak Surdianto, S.Sos <br>& Ibu Farna, S.Pd
+            </p>
+            <a href="https://instagram.com/difajeni07" target="_blank" class="social-link">
+              <i class="fa-brands fa-instagram"></i> @difajeni07
+            </a>
+          </div>
+
+          <div style="font-size: 2rem; color: #8c6d46;" class="cursive">&</div>
+
+          <div class="profile-card">
+            <div class="photo-frame">
+              <img src="fa66d317-7acb-4eda-a1ef-c79aab6971e1(1)(1).jpg" alt="Yuski Mahendra">
+            </div>
+            <h3 class="profile-name cursive">Yuski Mahendra, S.T.</h3>
+            <p class="parents">
+              Putra dari Bapak Minfrizal <br>& Ibu Zaitun (Almh.) / Ibu Marni Wati
+            </p>
+            <a href="https://instagram.com/yuskimahendra" target="_blank" class="social-link">
+              <i class="fa-brands fa-instagram"></i> @yuskimahendra
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="section-title cursive">Love Story</h2>
+
+        <div class="story-item">
+          <img src="image(1).png" alt="Awal Pertemuan" class="story-img">
+          <h3 class="story-title">Awal Pertemuan</h3>
+          <p class="story-desc">
+            Di bawah dinginnya kabut Danau Gunung Tujuh pada 17 Agustus 2025, dua langkah tak sengaja bertemu di jalur yang sama. Berawal dari percakapan sederhana di tepi danau, perjalanan pendakian hari itu berubah menjadi awal dari sebuah kisah yang tak pernah disangka.
+          </p>
+        </div>
+
+        <hr style="border: none; border-top: 1px dashed #e2d7c5; margin: 30px 0;">
+
+        <div class="story-item">
+          <img src="image(2)(1)(1).png" alt="Lamaran" class="story-img">
+          <h3 class="story-title">Lamaran</h3>
+          <p class="story-desc">
+            Satu tahun berlalu, menjaga dan merawat rasa yang makin kuat. Hingga pada 21 Agustus 2026, janji itu naik satu tingkat lewat acara lamaran yang hangat di tengah keluarga. Cincin yang dilingkarkan menjadi simbol bahwa niat yang tumbuh di atas gunung siap dibawa menuju dermaga yang serius.
+          </p>
+        </div>
+
+        <hr style="border: none; border-top: 1px dashed #e2d7c5; margin: 30px 0;">
+
+        <div class="story-item">
+          <img src="fa66d317-7acb-4eda-a1ef-c79aab6971e1(1).jpg" alt="Pernikahan" class="story-img">
+          <h3 class="story-title">Pernikahan</h3>
+          <p class="story-desc">
+            Hanya selang sebulan, pada 21 September 2026, janji suci pernikahan akhirnya diucapkan. Perjalanan yang bermula dari tapak pendakian kini resmi menjadi langkah bersama seumur hidup—membuktikan bahwa menemukan pasangan terbaik adalah petualangan paling indah.
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="section-title cursive">Wedding Gift</h2>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+          Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika Anda ingin memberi hadiah, kami menyediakan tanda kasih di bawah ini:
+        </p>
+
+        <div class="bank-card">
+          <div class="bank-name">BANK BRI</div>
+          <div class="rekening-number">011701138473504</div>
+          <div class="rekening-owner">a.n. DIFA JENI NOVELA</div>
+        </div>
+
+        <div class="bank-card">
+          <div class="bank-name">BANK BRI</div>
+          <div class="rekening-number">556301023302539</div>
+          <div class="rekening-owner">a.n. YUSKI MAHENDRA</div>
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="section-title cursive">Kehadiran & Doa Ucapan</h2>
+
+        <form id="wishes-form" onsubmit="submitWish(event)">
+          <div class="form-group">
+            <label for="input-name">Nama Lengkap</label>
+            <input type="text" id="input-name" class="form-control" placeholder="Masukkan nama Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label for="input-status">Konfirmasi Kehadiran</label>
+            <select id="input-status" class="form-control" required>
+              <option value="Hadir">Hadir</option>
+              <option value="Tidak Hadir">Tidak Hadir</option>
+              <option value="Ragu-ragu">Ragu-ragu</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-message">Pesan & Doa Ucapan</label>
+            <textarea id="input-message" class="form-control" placeholder="Tuliskan ucapan & doa untuk kedua mempelai..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Kirim Ucapan</button>
+        </form>
+
+        <div class="wishes-container" id="wishes-display">
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="music-btn" id="music-btn" onclick="toggleMusic()" style="display: none;">
+    <i class="fa-solid fa-music" id="music-icon"></i>
+  </div>
+
+  <script>
+    // 1. SET NAMA TAMU DARI URL PARAMETER (?to=NamaTamu)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestName = urlParams.get('to') || urlParams.get('n') || "Nama Tamu";
+      document.getElementById('guest-name-display').innerText = guestName;
+      
+      // Load ucapan yang sudah tersimpan
+      loadWishes();
+    });
+
+    // 2. LOGIC BUKA UNDANGAN & PLAY AUDIO
+    const music = document.getElementById('bg-music');
+    let isPlaying = false;
+
+    function openInvitation() {
+      // Sembunyikan Cover
+      document.getElementById('cover').classList.add('hide');
+      
+      // Tampilkan Main Content
+      const mainContent = document.getElementById('main-content');
+      mainContent.classList.add('show');
+      
+      // Tampilkan Tombol Musik
+      document.getElementById('music-btn').style.display = 'flex';
+
+      // Play Musik & Video
+      playMusic();
+      const heroVideo = document.getElementById('hero-video');
+      if (heroVideo) {
+        heroVideo.play();
+      }
+    }
+
+    function playMusic() {
+      music.play().then(() => {
+        isPlaying = true;
+        document.getElementById('music-icon').className = 'fa-solid fa-compact-disc fa-spin';
+      }).catch(err => {
+        console.log("Audio autoplay prevented: ", err);
+      });
+    }
+
+    function toggleMusic() {
+      const musicIcon = document.getElementById('music-icon');
+      if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+        musicIcon.className = 'fa-solid fa-music';
+      } else {
+        music.play();
+        isPlaying = true;
+        musicIcon.className = 'fa-solid fa-compact-disc fa-spin';
+      }
+    }
+
+    // 3. LOGIC DAFTAR KEHADIRAN & PESAN (PERSISTENT VIA LOCALSTORAGE)
+    const STORAGE_KEY = 'WEDDING_WISHES_NOVELA_YUSKI';
+
+    function getStoredWishes() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      if (data) {
+        return JSON.parse(data);
+      }
+      // Sample data awal jika belum ada input
+      return [
+        {
+          name: "Budi & Keluarga",
+          status: "Hadir",
+          message: "Selamat atas pernikahannya Novela & Yuski! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah."
+        }
+      ];
+    }
+
+    function loadWishes() {
+      const wishes = getStoredWishes();
+      const wishesDisplay = document.getElementById('wishes-display');
+      wishesDisplay.innerHTML = '';
+
+      wishes.forEach(item => {
+        const wishCard = document.createElement('div');
+        wishCard.className = 'wish-card';
+        wishCard.innerHTML = `
+          <div class="wish-header">
+            <span class="wish-name">${escapeHtml(item.name)}</span>
+            <span class="wish-status">${escapeHtml(item.status)}</span>
+          </div>
+          <div class="wish-text">${escapeHtml(item.message)}</div>
+        `;
+        wishesDisplay.appendChild(wishCard);
+      });
+    }
+
+    function submitWish(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('input-name').value.trim();
+      const status = document.getElementById('input-status').value;
+      const message = document.getElementById('input-message').value.trim();
+
+      if (!name || !message) return;
+
+      const newWish = { name, status, message };
+      const currentWishes = getStoredWishes();
+      currentWishes.unshift(newWish); // Tambah ke paling atas
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentWishes));
+
+      // Reset Form
+      document.getElementById('wishes-form').reset();
+
+      // Refresh Display
+      loadWishes();
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
